@@ -28,20 +28,19 @@ enum Sign {
         case .scissors:
             return "✂️"
         }
+    }
+    
+    func gameState(against opponentSign: Sign) -> GameState {
+        if self == opponentSign { return .draw }
         
-        func gameState(against opponentSign: Sign) -> GameState {
-            if self == opponentSign { return .draw }
-            
-            switch self {
-            case .rock:
-                if opponentSign == .paper {return .lose}
-            case .paper:
-                if opponentSign == .scissors { return .lose}
-            case .scissors:
-                if opponentSign == .rock { return .lose}
-            }
-            return .win
+        switch self {
+        case .rock:
+            if opponentSign == .paper {return .lose}
+        case .paper:
+            if opponentSign == .scissors { return .lose}
+        case .scissors:
+            if opponentSign == .rock { return .lose}
         }
-        
+        return .win
     }
 }
